@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lincoln Villanueva · Cursos de desarrollo web y automatización</title>
+  <meta name="description" content="Cursos de desarrollo web full stack con React y Next.js, TypeScript y automatización con n8n, dictados por Lincoln Villanueva en Lima, Perú.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #EEF2F0;
+      --ink: #142019;
+      --muted: #4A5A52;
+      --line: #C7D6CF;
+      --accent: #1F7A5A;
+      --surface: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    header.top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0;
+    }
+    .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.125rem; text-decoration: none; color: var(--ink); }
+    nav a { margin-left: 1.25rem; text-decoration: none; color: var(--muted); font-weight: 500; }
+    nav a:hover { color: var(--ink); }
+
+    .hero { padding: 3.5rem 0 3rem; }
+    .hero h1 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 4.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+      max-width: 16ch;
+    }
+    .hero p { max-width: 36rem; color: var(--muted); font-size: 1.1875rem; margin: 0; }
+
+    /* El elemento distintivo: un flujo tipo n8n */
+    .flow {
+      margin: 3rem 0 0;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    }
+    .node {
+      background: var(--surface);
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      padding: 0.85rem 1.1rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .node small { display: block; color: var(--muted); font-size: 0.8125rem; font-weight: 400; }
+    .node.end { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .node.end small { color: #D6EDE3; }
+    .wire { width: 2.5rem; height: 2px; background: var(--ink); position: relative; }
+    .wire::after {
+      content: ""; position: absolute; right: -1px; top: -4px;
+      border-left: 8px solid var(--ink); border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+    }
+
+    section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700; font-size: 1.875rem; letter-spacing: -0.01em;
+      margin: 0 0 1.5rem;
+    }
+    .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; }
+    .course h3 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 500; font-size: 1.25rem; margin: 0 0 0.5rem; }
+    .course p { margin: 0; color: var(--muted); }
+
+    .prose { max-width: 40rem; }
+    .prose p { margin: 0 0 1rem; }
+
+    .contact { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 2rem; max-width: 40rem; }
+    .contact dt { color: var(--muted); }
+    .contact dd { margin: 0; font-weight: 500; }
+
+    footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9375rem; }
+
+    @media (max-width: 40rem) {
+      nav { display: none; }
+      .flow { flex-direction: column; align-items: flex-start; }
+      .wire { width: 2px; height: 1.75rem; margin-left: 1.5rem; }
+      .wire::after { right: -4px; top: auto; bottom: -1px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink); border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="#">Lincoln Villanueva</a>
+      <nav aria-label="Secciones">
+        <a href="#cursos">Cursos</a>
+        <a href="#whatsapp">WhatsApp</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <h1>Cursos de desarrollo web y automatización</h1>
+        <p>Soy ingeniero de sistemas con más de 15 años de experiencia. Dicto cursos prácticos de desarrollo full stack, TypeScript y automatización de procesos en Lima, Perú.</p>
+
+        <div class="flow" aria-label="Lo que se aprende: de una app web a la automatización de mensajes">
+          <div class="node">Next.js<small>app web</small></div>
+          <div class="wire" aria-hidden="true"></div>
+          <div class="node">API REST<small>backend</small></div>
+          <div class="wire" aria-hidden="true"></div>
+          <div class="node">n8n<small>automatización</small></div>
+          <div class="wire" aria-hidden="true"></div>
+          <div class="node end">WhatsApp<small>mensajes</small></div>
+        </div>
+      </div>
+
+      <section id="cursos">
+        <h2>Cursos</h2>
+        <div class="courses">
+          <div class="course">
+            <h3>AI Web Full Stack con React y Next.js</h3>
+            <p>React con TypeScript, App Router, APIs REST, seguridad, SEO, pagos en línea, integración con modelos de IA y despliegue a producción.</p>
+          </div>
+          <div class="course">
+            <h3>Automatización con n8n</h3>
+            <p>Flujos de trabajo que conectan aplicaciones, APIs y canales de mensajería como WhatsApp, sin depender de procesos manuales.</p>
+          </div>
+          <div class="course">
+            <h3>Fundamentos de TypeScript</h3>
+            <p>Tipos, funciones y buenas prácticas para escribir JavaScript más seguro y mantenible.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="whatsapp">
+        <h2>Uso de WhatsApp</h2>
+        <div class="prose">
+          <p>Uso la API de WhatsApp Business para enseñar a integrar mensajería en flujos de automatización con n8n, y para enviar a los alumnos mensajes relacionados con el curso, como avisos de clases y materiales.</p>
+          <p>Solo escribo a personas que se han inscrito o que me han contactado primero. No envío publicidad a terceros. Puedes pedir que deje de escribirte en cualquier momento respondiendo «baja».</p>
+          <p>Detalles sobre el tratamiento de tus datos en la <a href="privacidad.html">política de privacidad</a>.</p>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <dl class="contact">
+          <dt>Correo</dt>
+          <dd><a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a></dd>
+          <dt>Ubicación</dt>
+          <dd>Lima, Perú</dd>
+        </dl>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Lincoln Villanueva · <a href="privacidad.html">Política de privacidad</a>
+    </footer>
+  </div>
+</body>
+</html>
