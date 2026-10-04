@@ -1,61 +1,308 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-PE">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Política de privacidad · Lincoln Villanueva</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root { --bg: #EEF2F0; --ink: #142019; --muted: #4A5A52; --line: #C7D6CF; --accent: #1F7A5A; }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 1.0625rem; line-height: 1.65; }
-    a { color: var(--accent); }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    .wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-    h1, h2 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; letter-spacing: -0.01em; }
-    h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; margin: 2rem 0 0.5rem; }
-    h2 { font-size: 1.3rem; margin: 2.25rem 0 0.5rem; }
-    .updated { color: var(--muted); margin: 0 0 1rem; }
-    ul { padding-left: 1.25rem; }
-    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9375rem; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidad, términos y eliminación de datos | Asistente del curso de n8n</title>
+<meta name="description" content="Qué datos recopila «Asistente del curso de n8n» cuando le escribes por WhatsApp, sus condiciones de uso y cómo pedir que eliminemos tus datos.">
+<style>
+  :root {
+    --paper: #FAFAFB;
+    --surface: #FFFFFF;
+    --ink: #1D1B26;
+    --muted: #5E5A6E;
+    --line: #E4E1EA;
+    --accent: #5A2D82;
+    --accent-ink: #FFFFFF;
+    --band: #F3EEF8;
+    --serif: "Iowan Old Style", "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16141C;
+      --surface: #211E2A;
+      --ink: #ECE9F2;
+      --muted: #ABA5BA;
+      --line: #36313F;
+      --accent: #CBAAEC;
+      --accent-ink: #1D1B26;
+      --band: #1E1A26;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap { max-width: 42rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* Masthead ------------------------------------------------------------ */
+  .masthead { padding: clamp(3rem, 9vw, 5.5rem) 0 2.5rem; }
+  .masthead h1 {
+    font-size: clamp(2.1rem, 6vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin: 0 0 1.25rem;
+    text-wrap: balance;
+  }
+  .lede { font-size: 1.2rem; line-height: 1.6; color: var(--muted); margin: 0 0 1.25rem; max-width: 36rem; }
+  .updated { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+  /* Conversation summary (the one bold element) ------------------------- */
+  .thread-band { background: var(--band); padding: 2.75rem 0 3rem; border-block: 1px solid var(--line); }
+  .thread-band h2 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    letter-spacing: 0;
+  }
+  .thread { margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-family: var(--sans); font-size: 1rem; line-height: 1.45; }
+  .thread dt, .thread dd { margin: 0; padding: 0.7rem 1rem; max-width: min(85%, 26rem); border-radius: 1.15rem; }
+  .thread dt {
+    align-self: flex-end;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-bottom-right-radius: 0.3rem;
+    font-weight: 500;
+  }
+  .thread dd {
+    align-self: flex-start;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 0.3rem;
+    margin-bottom: 0.9rem;
+  }
+  .thread dd:last-of-type { margin-bottom: 0; }
+
+  /* Section navigation --------------------------------------------------- */
+  .toc {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 90%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .toc ul { list-style: none; margin: 0 auto; padding: 0.55rem 1.5rem; max-width: 42rem; display: flex; gap: 0.25rem; overflow-x: auto; }
+  .toc a {
+    display: block; white-space: nowrap;
+    font-family: var(--sans); font-size: 0.95rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    padding: 0.4rem 0.85rem; border-radius: 0.5rem;
+  }
+  .toc a:hover { background: var(--band); }
+
+  /* Document ------------------------------------------------------------- */
+  main section { padding-top: 3.5rem; scroll-margin-top: 3.5rem; }
+  main h2 { font-size: clamp(1.75rem, 4vw, 2.2rem); line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 1.5rem; }
+  main h3 { font-size: 1.15rem; line-height: 1.35; margin: 2.25rem 0 0.5rem; }
+  main p { margin: 0 0 1rem; }
+  main ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+  main li { margin-bottom: 0.4rem; padding-left: 0.2rem; }
+  main li::marker { color: var(--accent); }
+
+  /* Deletion request: the only boxed element of the document */
+  .request {
+    margin: 1.75rem 0 0.5rem;
+    padding: 1.75rem 1.75rem 2rem;
+    border: 1.5px solid var(--accent);
+    border-radius: 1rem;
+    background: var(--surface);
+  }
+  .request h3 { margin-top: 0; }
+  .steps { list-style: none; counter-reset: step; padding: 0; margin: 1rem 0 1.75rem; }
+  .steps li { counter-increment: step; position: relative; padding-left: 2.6rem; margin-bottom: 1rem; }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 0.1rem;
+    width: 1.75rem; height: 1.75rem; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 600;
+    display: grid; place-items: center;
+  }
+  .button {
+    display: inline-block;
+    font-family: var(--sans); font-size: 1rem; font-weight: 600;
+    background: var(--accent); color: var(--accent-ink);
+    text-decoration: none;
+    padding: 0.8rem 1.3rem; border-radius: 0.6rem;
+  }
+  .button:hover { text-decoration: underline; }
+
+  /* Footer --------------------------------------------------------------- */
+  footer { margin-top: 4.5rem; padding: 2rem 0 3rem; border-top: 1px solid var(--line); font-family: var(--sans); font-size: 0.95rem; color: var(--muted); }
+  footer p { margin: 0 0 0.4rem; }
+
+  @media print {
+    .toc, .button { display: none; }
+    .thread-band { border: 0; background: none; }
+    body { font-size: 11pt; }
+  }
+</style>
 </head>
 <body>
+
+<header class="masthead">
   <div class="wrap">
-    <a href="index.html">Volver al inicio</a>
+    <h1>Privacidad, términos y eliminación de datos</h1>
+    <p class="lede">Qué pasa con la información que envías cuando le escribes por WhatsApp a «Asistente del curso de n8n», el asistente automatizado que opera Lincoln Villanueva Siccha desde Lima, Perú.</p>
+    <p class="updated">Última actualización: 3 de octubre de 2026</p>
+  </div>
+</header>
 
-    <h1>Política de privacidad</h1>
-    <p class="updated">Última actualización: octubre de 2026</p>
+<section class="thread-band" aria-labelledby="resumen">
+  <div class="wrap">
+    <h2 id="resumen">Lo esencial, en cuatro preguntas</h2>
+    <dl class="thread">
+      <dt>¿Para qué usan mis mensajes?</dt>
+      <dd>Solo para responderte. No los vendemos ni los usamos para publicidad.</dd>
+      <dt>¿Quién más los procesa?</dt>
+      <dd>Meta, que opera WhatsApp, y el servicio de inteligencia artificial que redacta las respuestas.</dd>
+      <dt>¿Cuánto tiempo los guardan?</dt>
+      <dd>Como máximo 30 días. Después los eliminamos.</dd>
+      <dt>¿Puedo pedir que los borren antes?</dt>
+      <dd>Sí, cuando quieras y sin costo. <a href="#eliminacion">Así puedes pedirlo</a>.</dd>
+    </dl>
+  </div>
+</section>
 
-    <p>Esta política explica qué datos recibo cuando te comunicas conmigo por WhatsApp o por correo, y cómo los uso. El responsable es Lincoln Villanueva, con domicilio en Lima, Perú.</p>
+<nav class="toc" aria-label="Secciones de esta página">
+  <ul>
+    <li><a href="#privacidad">Privacidad</a></li>
+    <li><a href="#terminos">Términos de uso</a></li>
+    <li><a href="#eliminacion">Eliminación de datos</a></li>
+  </ul>
+</nav>
 
-    <h2>Qué datos recibo</h2>
+<main class="wrap">
+
+  <section id="privacidad" aria-labelledby="t-privacidad">
+    <h2 id="t-privacidad">Política de privacidad</h2>
+
+    <h3>Quién es responsable de tus datos</h3>
+    <p>Lincoln Villanueva Siccha, con domicilio en Lima, Perú, es responsable del tratamiento de los datos personales que se recopilan a través de «Asistente del curso de n8n». Puedes escribirnos a <a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a>.</p>
+
+    <h3>Qué datos recopilamos</h3>
+    <p>Cuando nos escribes por WhatsApp, recibimos:</p>
     <ul>
       <li>Tu número de teléfono y el nombre de tu perfil de WhatsApp.</li>
-      <li>El contenido de los mensajes que me envías.</li>
-      <li>Tu correo, si me escribes por ese medio.</li>
+      <li>El contenido de tus mensajes: textos, audios, imágenes, documentos o ubicaciones que decidas enviar.</li>
+      <li>Datos técnicos de cada mensaje, como su identificador, la fecha y hora, y si fue entregado o leído.</li>
     </ul>
+    <p>No pedimos datos sensibles, como información de salud, datos bancarios o documentos de identidad. Te pedimos no enviarlos por este medio.</p>
 
-    <h2>Para qué los uso</h2>
+    <h3>Para qué los usamos</h3>
     <ul>
-      <li>Responder tus consultas sobre los cursos.</li>
-      <li>Enviarte avisos y materiales de un curso en el que estás inscrito.</li>
-      <li>Realizar demostraciones de automatización en clase, solo con números de participantes que lo aceptaron.</li>
+      <li>Recibir tus mensajes y responderte.</li>
+      <li>Generar respuestas automáticas con inteligencia artificial y recordar el contexto de la conversación mientras hablamos.</li>
+      <li>Revisar el funcionamiento del servicio, corregir errores y mejorarlo, con fines educativos y de demostración.</li>
     </ul>
-    <p>No vendo ni comparto tus datos con terceros con fines comerciales.</p>
+    <p>No vendemos tus datos, no los usamos para publicidad y no te enviaremos mensajes que no hayas solicitado.</p>
 
-    <h2>Servicios que intervienen</h2>
-    <p>Los mensajes se envían a través de la API de WhatsApp Business de Meta y pueden procesarse con n8n. Meta trata los datos según su propia política de privacidad.</p>
+    <h3>Con quién los compartimos</h3>
+    <p>Solo con los proveedores necesarios para que el servicio funcione:</p>
+    <ul>
+      <li>Meta Platforms, Inc., que opera WhatsApp, para recibir y enviar los mensajes.</li>
+      <li>Google LLC, cuyos modelos Gemini generan las respuestas automáticas a partir del texto de tus mensajes.</li>
+      <li>Los servicios de infraestructura donde se ejecuta la automatización (n8n), que procesan los mensajes para entregarlos y responderlos.</li>
+    </ul>
+    <p>Estos proveedores pueden procesar datos en servidores ubicados fuera del Perú y aplican sus propias políticas de privacidad. Solo compartiremos tus datos con una autoridad cuando una ley nos obligue a hacerlo.</p>
 
-    <h2>Cuánto tiempo los conservo</h2>
-    <p>Mientras dure el curso o la consulta, y luego el tiempo necesario para cerrar cualquier pendiente. Los datos usados en demostraciones se eliminan al terminar la sesión.</p>
+    <h3>Cuánto tiempo los conservamos</h3>
+    <p>Guardamos el historial de la conversación y los registros técnicos como máximo 30 días; después los eliminamos. Si nos pides la eliminación antes, la hacemos como se explica en <a href="#eliminacion">Eliminación de datos</a>.</p>
 
-    <h2>Tus derechos</h2>
-    <p>Puedes pedir acceder, corregir o eliminar tus datos, o dejar de recibir mensajes, en cualquier momento. Responde «baja» por WhatsApp o escribe a <a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a>. Esta política se rige por la Ley N.º 29733 de Protección de Datos Personales del Perú.</p>
+    <h3>Cómo los protegemos</h3>
+    <p>Aplicamos medidas técnicas y organizativas razonables: el acceso está restringido a las personas responsables del servicio, las credenciales están protegidas y las conexiones usan cifrado (HTTPS).</p>
 
-    <footer>© 2026 Lincoln Villanueva · <a href="index.html">Inicio</a></footer>
-  </div>
+    <h3>Tus derechos</h3>
+    <p>De acuerdo con la Ley N.° 29733, Ley de Protección de Datos Personales, y su reglamento, puedes ejercer en cualquier momento tus derechos de acceso, rectificación, cancelación y oposición, así como revocar tu consentimiento. Para hacerlo, escríbenos a <a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a> indicando tu número de WhatsApp. Si consideras que no atendimos tu solicitud, puedes presentar una reclamación ante la Autoridad Nacional de Protección de Datos Personales.</p>
+
+    <h3>Menores de edad</h3>
+    <p>Este servicio no está dirigido a menores de 18 años. Si eres menor de edad, úsalo solo con autorización de tu madre, padre o tutor.</p>
+
+    <h3>Cambios en esta política</h3>
+    <p>Si cambiamos esta política, actualizaremos la fecha que aparece al inicio de esta página.</p>
+  </section>
+
+  <section id="terminos" aria-labelledby="t-terminos">
+    <h2 id="t-terminos">Términos de uso</h2>
+
+    <h3>El servicio</h3>
+    <p>«Asistente del curso de n8n» responde de forma automática los mensajes que recibe por WhatsApp. Lo opera Lincoln Villanueva Siccha con fines educativos y de demostración. Al escribirle, aceptas estos términos y la política de privacidad de esta página.</p>
+
+    <h3>Respuestas automáticas</h3>
+    <p>Las respuestas se generan con inteligencia artificial y pueden contener errores o información incompleta. No constituyen asesoría profesional de ningún tipo, sea legal, médica o financiera. Verifica cualquier información importante antes de tomar una decisión.</p>
+
+    <h3>Uso permitido</h3>
+    <p>No uses el servicio para:</p>
+    <ul>
+      <li>Enviar contenido ilegal, ofensivo, discriminatorio o que vulnere derechos de terceros.</li>
+      <li>Enviar spam, publicidad no solicitada o archivos maliciosos.</li>
+      <li>Compartir datos personales de otras personas sin su autorización.</li>
+      <li>Intentar dañar, saturar o manipular el servicio.</li>
+    </ul>
+    <p>Podemos dejar de responder a quien no respete estas reglas.</p>
+
+    <h3>Disponibilidad</h3>
+    <p>El servicio puede interrumpirse, cambiar o dejar de estar disponible en cualquier momento y sin previo aviso. No garantizamos que funcione de forma continua ni libre de errores.</p>
+
+    <h3>Responsabilidad</h3>
+    <p>En la medida en que la ley lo permita, Lincoln Villanueva Siccha no se hace responsable por decisiones tomadas a partir de las respuestas del asistente ni por daños derivados del uso del servicio o de su falta de disponibilidad.</p>
+
+    <h3>WhatsApp</h3>
+    <p>Tu uso de WhatsApp también se rige por sus <a href="https://www.whatsapp.com/legal/terms-of-service">Condiciones del servicio</a> y su <a href="https://www.whatsapp.com/privacy">Política de privacidad</a>.</p>
+
+    <h3>Ley aplicable</h3>
+    <p>Estos términos se rigen por las leyes de la República del Perú. Cualquier controversia se someterá a los jueces y tribunales de Lima.</p>
+  </section>
+
+  <section id="eliminacion" aria-labelledby="t-eliminacion">
+    <h2 id="t-eliminacion">Eliminación de datos</h2>
+    <p>Puedes pedir que eliminemos tus datos cuando quieras, sin costo y sin tener que explicar el motivo.</p>
+
+    <div class="request">
+      <h3>Cómo pedir la eliminación</h3>
+      <ol class="steps">
+        <li>Escribe a <a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a> con el asunto «Solicitud de eliminación de datos».</li>
+        <li>Indica el número de WhatsApp con el que nos escribiste, con el código de país (por ejemplo, +51 999 999 999).</li>
+        <li>En un plazo máximo de 10 días hábiles eliminamos tus datos y te lo confirmamos por correo.</li>
+      </ol>
+      <a class="button" href="mailto:lvs1205@gmail.com?subject=Solicitud%20de%20eliminaci%C3%B3n%20de%20datos&amp;body=Hola%2C%20solicito%20la%20eliminaci%C3%B3n%20de%20mis%20datos.%0A%0AN%C3%BAmero%20de%20WhatsApp%20(con%20c%C3%B3digo%20de%20pa%C3%ADs)%3A%20%2B51%20">Escribir para pedir la eliminación</a>
+    </div>
+
+    <h3>Qué eliminamos</h3>
+    <p>El historial de tus conversaciones, los registros técnicos asociados a tu número y cualquier otro dato tuyo que conservemos.</p>
+
+    <h3>Qué no depende de nosotros</h3>
+    <p>WhatsApp guarda tus chats en tu teléfono y procesa los mensajes en sus sistemas según sus propias políticas. Para borrar el chat de tu teléfono, elimínalo desde WhatsApp; para lo demás, consulta la <a href="https://www.whatsapp.com/privacy">Política de privacidad de WhatsApp</a>. También conservaremos los datos que una ley nos obligue a mantener.</p>
+    <p>Si no quieres seguir recibiendo respuestas, deja de escribirnos o bloquea este número en WhatsApp.</p>
+  </section>
+
+  <footer>
+    <p>«Asistente del curso de n8n», operado por Lincoln Villanueva Siccha, Lima, Perú.</p>
+    <p>Contacto: <a href="mailto:lvs1205@gmail.com">lvs1205@gmail.com</a></p>
+    <p><a href="./">Volver al sitio</a></p>
+  </footer>
+
+</main>
+
 </body>
 </html>
